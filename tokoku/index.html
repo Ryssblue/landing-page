@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TokoKu adalah landing page toko online modern dengan keranjang belanja dan checkout WhatsApp.">
+  <title>TokoKu - Belanja Mudah via WhatsApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar container" aria-label="Navigasi utama">
+      <a class="brand" href="#beranda" aria-label="TokoKu Beranda">
+        <span class="brand-icon" aria-hidden="true">🛍️</span>
+        <span class="brand-name">Toko<span>Ku</span></span>
+      </a>
+
+      <button class="menu-toggle icon-button" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">
+        <span aria-hidden="true">☰</span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#kategori">Kategori</a></li>
+        <li><a href="#tentang">Tentang Kami</a></li>
+        <li><a href="#testimoni">Testimoni</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aktifkan dark mode" aria-pressed="false">
+          <span aria-hidden="true">☀️</span>
+          <span aria-hidden="true">🌙</span>
+          <span class="toggle-thumb" aria-hidden="true"></span>
+        </button>
+        <button class="cart-trigger" id="cartTrigger" type="button" aria-label="Buka keranjang belanja">
+          <span aria-hidden="true">🛒</span>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero section" id="beranda">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Selamat Datang di TokoKu</span>
+          <h1>Belanja Mudah,<br>Pesan Lewat <span>WhatsApp</span></h1>
+          <p>Tambah produk ke keranjang, checkout langsung melalui WhatsApp, praktis dan cepat.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#produk">
+              <span aria-hidden="true">🛒</span>
+              Belanja Sekarang
+            </a>
+            <a class="btn btn-outline" href="#kategori">Lihat Kategori</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <!-- Ganti gambar hero vektor ke gambar asli -->
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" alt="Keranjang belanja TokoKu berisi snack, minuman, dan produk harian">
+          <span class="floating-bubble whatsapp-bubble" aria-hidden="true">☎</span>
+          <span class="floating-bubble bubble-snack">Snack</span>
+          <span class="floating-bubble bubble-drink">Minuman</span>
+          <span class="floating-bubble bubble-product">Produk</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search And Filters -->
+    <section class="shopping-tools" aria-label="Pencarian dan filter produk">
+      <div class="container">
+        <div class="tools-panel reveal">
+          <div class="search-box" id="searchBox">
+            <label class="search-icon" for="searchInput" aria-hidden="true">&#128269;</label>
+            <input id="searchInput" type="search" placeholder="Cari produk..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="searchSuggestions">
+            <button class="search-clear" id="searchClear" type="button" aria-label="Hapus pencarian" hidden>&times;</button>
+            <div class="search-suggestions" id="searchSuggestions" role="listbox" aria-label="Hasil pencarian produk"></div>
+          </div>
+
+          <select id="categorySelect" aria-label="Pilih kategori">
+            <option value="Semua">Semua Kategori</option>
+            <option value="Makanan">Makanan</option>
+            <option value="Minuman">Minuman</option>
+            <option value="Snack">Snack</option>
+            <option value="Perawatan">Perawatan</option>
+            <option value="Rumah Tangga">Rumah Tangga</option>
+            <option value="Alat Tulis">Alat Tulis</option>
+          </select>
+
+          <select id="sortSelect" aria-label="Urutkan produk">
+            <option value="Terbaru">Terbaru</option>
+            <option value="Harga Terendah">Harga Terendah</option>
+            <option value="Harga Tertinggi">Harga Tertinggi</option>
+            <option value="Terlaris">Terlaris</option>
+          </select>
+        </div>
+
+        <div class="category-chips reveal" id="categoryChips" aria-label="Filter kategori">
+          <button class="chip active" type="button" data-category="Semua">🛒 Semua</button>
+          <button class="chip" type="button" data-category="Makanan">🍽️ Makanan</button>
+          <button class="chip" type="button" data-category="Minuman">🥤 Minuman</button>
+          <button class="chip" type="button" data-category="Snack">🍪 Snack</button>
+          <button class="chip" type="button" data-category="Perawatan">🧴 Perawatan</button>
+          <button class="chip" type="button" data-category="Rumah Tangga">🏠 Rumah Tangga</button>
+          <button class="chip" type="button" data-category="Alat Tulis">✏️ Alat Tulis</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="section product-section" id="produk">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Produk Pilihan</span>
+          <h2>Belanja cepat untuk kebutuhan harian</h2>
+          <p>Produk populer siap ditambahkan ke keranjang dan dipesan langsung via WhatsApp.</p>
+        </div>
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section category-section" id="kategori">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Kategori</span>
+          <h2>Pilih kebutuhanmu dalam satu tempat</h2>
+        </div>
+        <div class="category-grid reveal">
+          <article class="category-card"><span>🍽️</span><h3>Makanan</h3><p>Lauk praktis dan menu siap santap.</p></article>
+          <article class="category-card"><span>🥤</span><h3>Minuman</h3><p>Minuman segar untuk aktivitas harian.</p></article>
+          <article class="category-card"><span>🍪</span><h3>Snack</h3><p>Camilan ringan untuk keluarga.</p></article>
+          <article class="category-card"><span>🧴</span><h3>Perawatan</h3><p>Produk personal care pilihan.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about-section" id="tentang">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <span class="eyebrow">Tentang Kami</span>
+          <h2>TokoKu dibuat untuk transaksi yang ringkas dan nyaman</h2>
+          <p>Kami menggabungkan katalog produk ringan, keranjang belanja yang tersimpan, dan checkout WhatsApp supaya pelanggan bisa memesan tanpa alur yang rumit.</p>
+        </div>
+        <div class="stats-grid reveal" aria-label="Statistik TokoKu">
+          <div class="stat-item"><strong>500+</strong><span>Pesanan</span></div>
+          <div class="stat-item"><strong>4.8</strong><span>Rating</span></div>
+          <div class="stat-item"><strong>6</strong><span>Kategori</span></div>
+          <div class="stat-item"><strong>24/7</strong><span>Checkout</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonial-section" id="testimoni">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Testimoni</span>
+          <h2>Pelanggan suka prosesnya yang cepat</h2>
+        </div>
+        <div class="testimonial-grid reveal">
+          <article class="testimonial-card"><p>"Keranjangnya simpel, tinggal checkout ke WhatsApp. Cocok untuk belanja dadakan."</p><strong>Rani Putri</strong><span>Pelanggan</span></article>
+          <article class="testimonial-card"><p>"Tampilannya bersih dan produk gampang dicari. Dark mode-nya juga enak dilihat."</p><strong>Andi Pratama</strong><span>Pelanggan</span></article>
+          <article class="testimonial-card"><p>"Saya bisa simpan keranjang dulu lalu lanjut pesan tanpa mulai dari awal."</p><strong>Maya Lestari</strong><span>Pelanggan</span></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
+      <div class="container faq-grid">
+        <div class="section-heading reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Pertanyaan yang sering muncul</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details open>
+            <summary>Apakah checkout langsung masuk ke WhatsApp?</summary>
+            <p>Ya, tombol checkout akan membuka WhatsApp dengan daftar pesanan dan total harga otomatis.</p>
+          </details>
+          <details>
+            <summary>Apakah keranjang hilang setelah refresh?</summary>
+            <p>Tidak. Keranjang tersimpan di Local Storage browser sampai kamu menghapus itemnya.</p>
+          </details>
+          <details>
+            <summary>Bisakah nomor WhatsApp diganti?</summary>
+            <p>Bisa. Nomor disiapkan di file JavaScript agar mudah disesuaikan untuk toko.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Sidebar -->
+  <div class="page-scrim" id="pageScrim"></div>
+  <aside class="cart-sidebar" id="cartSidebar" aria-hidden="true" aria-label="Keranjang belanja">
+    <div class="cart-header">
+      <h2>Keranjang Belanja</h2>
+      <button class="icon-button" id="closeCart" type="button" aria-label="Tutup keranjang">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">Rp0</strong>
+      </div>
+      <button class="btn btn-primary checkout-btn" id="checkoutButton" type="button">
+        <span aria-hidden="true">☎</span>
+        Pesan via WhatsApp
+      </button>
+      <p>Pesan akan dikirim ke WhatsApp kami</p>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="modal-backdrop" id="quickModal" aria-hidden="true">
+    <div class="quick-modal" role="dialog" aria-modal="true" aria-labelledby="quickTitle">
+      <button class="icon-button modal-close" id="closeQuickView" type="button" aria-label="Tutup quick view">×</button>
+      <div class="quick-content" id="quickContent"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon" aria-hidden="true">✓</span>
+    <span>
+      <strong id="toastTitle">Berhasil!</strong>
+      <small id="toastMessage">Produk berhasil ditambahkan ke keranjang</small>
+    </span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#beranda">
+          <span class="brand-icon" aria-hidden="true">🛍️</span>
+          <span class="brand-name">Toko<span>Ku</span></span>
+        </a>
+        <p>Toko online modern untuk belanja ringan, cepat, dan langsung via WhatsApp.</p>
+      </div>
+      <div>
+        <h3>Menu</h3>
+        <a href="#produk">Produk</a>
+        <a href="#kategori">Kategori</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <a href="mailto:halo@tokoku.test">halo@tokoku.test</a>
+        <a href="tel:+6283125726235">+62 831 2572 6235</a>
+      </div>
+      <div>
+        <h3>Media Sosial</h3>
+        <a href="#" aria-label="Instagram TokoKu">Instagram</a>
+        <a href="#" aria-label="TikTok TokoKu">TikTok</a>
+        <a href="#" aria-label="WhatsApp TokoKu">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 TokoKu. All Rights Reserved.</div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
