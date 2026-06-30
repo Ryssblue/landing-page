@@ -281,7 +281,7 @@ const products = [
   },
   {
     id: "kue-lapis",
-    name: "Kue Lapis Legit",
+    name: "Kukis",
     category: "Snack",
     price: 35000,
     oldPrice: 42000,
@@ -290,7 +290,7 @@ const products = [
     reviews: 38,
     sold: 150,
     image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=400",
-    description: "Kue lapis legit premium dengan lapisan tipis dan rasa butter yang kaya.",
+    description: "Kukis legit premium dengan lapisan tipis dan rasa butter yang kaya.",
     stock: "Tersedia",
     createdAt: 18
   },
