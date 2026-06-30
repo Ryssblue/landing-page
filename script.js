@@ -1762,6 +1762,12 @@ function trapFocusInModal(event) {
 
 /* ========== INIT ========== */
 function initApp() {
+  // Hide loading screen
+  const loadingScreen = document.getElementById("loadingScreen");
+  if (loadingScreen) {
+    setTimeout(() => loadingScreen.classList.add("hidden"), 600);
+  }
+
   initTheme();
   renderProducts();
   renderCart();

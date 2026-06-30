@@ -1,3 +1,70 @@
+/* ========== LOADING SCREEN ========== */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loading-content {
+  text-align: center;
+}
+.loading-logo {
+  font-size: 64px;
+  animation: loadingBounce 1s ease infinite;
+}
+.loading-name {
+  font-size: 28px;
+  font-weight: 800;
+  color: #16A34A;
+  margin: 12px 0 24px;
+  letter-spacing: 2px;
+}
+.loading-bar {
+  width: 200px;
+  height: 6px;
+  background: rgba(22, 163, 74, 0.15);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0 auto 16px;
+}
+.loading-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #16A34A, #22C55E);
+  border-radius: 99px;
+  animation: loadingFill 1.8s ease forwards;
+}
+.loading-text {
+  font-size: 13px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+@keyframes loadingBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes loadingFill {
+  0% { width: 0%; }
+  60% { width: 70%; }
+  100% { width: 100%; }
+}
+
+body.dark-mode .loading-screen {
+  background: linear-gradient(135deg, #07111D, #0D1A27);
+}
+body.dark-mode .loading-name {
+  color: #22C55E;
+}
+
 /* Root Variables */
 :root {
   --primary: #16A34A;
