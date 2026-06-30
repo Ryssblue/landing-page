@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TokoKu adalah landing page toko online modern dengan keranjang belanja dan checkout WhatsApp.">
-  <title>TokoKu - Belanja Mudah via WhatsApp</title>
+  <meta name="description" content="TokoKu adalah landing page toko online modern dengan keranjang belanja dan checkout mudah.">
+  <meta name="theme-color" content="#16A34A">
+  <title>TokoKu - Belanja Mudah via TokoKu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +23,9 @@
       </a>
 
       <button class="menu-toggle icon-button" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">
-        <span aria-hidden="true">☰</span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
       </button>
 
       <ul class="nav-menu" id="navMenu">
@@ -29,7 +34,9 @@
         <li><a href="#kategori">Kategori</a></li>
         <li><a href="#tentang">Tentang Kami</a></li>
         <li><a href="#testimoni">Testimoni</a></li>
+        <li><a href="#lokasi">📍 Lokasi</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="#riwayat">Pesanan Saya</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -52,8 +59,8 @@
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <span class="eyebrow">Selamat Datang di TokoKu</span>
-          <h1>Belanja Mudah,<br>Pesan Lewat <span>WhatsApp</span></h1>
-          <p>Tambah produk ke keranjang, checkout langsung melalui WhatsApp, praktis dan cepat.</p>
+          <h1>Belanja Mudah,<br>Pesan Lewat <span>TokoKu</span></h1>
+          <p>Tambah produk ke keranjang, checkout langsung, praktis dan cepat.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#produk">
               <span aria-hidden="true">🛒</span>
@@ -65,9 +72,7 @@
 
         <div class="hero-visual reveal">
           <div class="hero-glow" aria-hidden="true"></div>
-          <!-- Ganti gambar hero vektor ke gambar asli -->
-          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" alt="Keranjang belanja TokoKu berisi snack, minuman, dan produk harian">
-          <span class="floating-bubble whatsapp-bubble" aria-hidden="true">☎</span>
+          <img src="images/hero-banner.png" alt="Keranjang belanja TokoKu berisi snack, minuman, dan produk harian">
           <span class="floating-bubble bubble-snack">Snack</span>
           <span class="floating-bubble bubble-drink">Minuman</span>
           <span class="floating-bubble bubble-product">Produk</span>
@@ -122,7 +127,7 @@
         <div class="section-heading reveal">
           <span class="eyebrow">Produk Pilihan</span>
           <h2>Belanja cepat untuk kebutuhan harian</h2>
-          <p>Produk populer siap ditambahkan ke keranjang dan dipesan langsung via WhatsApp.</p>
+          <p>Produk populer siap ditambahkan ke keranjang dan dipesan langsung.</p>
         </div>
         <div class="product-grid" id="productGrid" aria-live="polite"></div>
       </div>
@@ -136,10 +141,10 @@
           <h2>Pilih kebutuhanmu dalam satu tempat</h2>
         </div>
         <div class="category-grid reveal">
-          <article class="category-card"><span>🍽️</span><h3>Makanan</h3><p>Lauk praktis dan menu siap santap.</p></article>
-          <article class="category-card"><span>🥤</span><h3>Minuman</h3><p>Minuman segar untuk aktivitas harian.</p></article>
-          <article class="category-card"><span>🍪</span><h3>Snack</h3><p>Camilan ringan untuk keluarga.</p></article>
-          <article class="category-card"><span>🧴</span><h3>Perawatan</h3><p>Produk personal care pilihan.</p></article>
+          <article class="category-card" data-category="Makanan" role="button" tabindex="0"><span>🍽️</span><h3>Makanan</h3><p>Lauk praktis dan menu siap santap.</p></article>
+          <article class="category-card" data-category="Minuman" role="button" tabindex="0"><span>🥤</span><h3>Minuman</h3><p>Minuman segar untuk aktivitas harian.</p></article>
+          <article class="category-card" data-category="Snack" role="button" tabindex="0"><span>🍪</span><h3>Snack</h3><p>Camilan ringan untuk keluarga.</p></article>
+          <article class="category-card" data-category="Perawatan" role="button" tabindex="0"><span>🧴</span><h3>Perawatan</h3><p>Produk personal care pilihan.</p></article>
         </div>
       </div>
     </section>
@@ -150,13 +155,13 @@
         <div class="about-copy reveal">
           <span class="eyebrow">Tentang Kami</span>
           <h2>TokoKu dibuat untuk transaksi yang ringkas dan nyaman</h2>
-          <p>Kami menggabungkan katalog produk ringan, keranjang belanja yang tersimpan, dan checkout WhatsApp supaya pelanggan bisa memesan tanpa alur yang rumit.</p>
+          <p>Kami menggabungkan katalog produk ringan, keranjang belanja yang tersimpan, dan checkout mudah supaya pelanggan bisa memesan tanpa alur yang rumit.</p>
         </div>
         <div class="stats-grid reveal" aria-label="Statistik TokoKu">
-          <div class="stat-item"><strong>500+</strong><span>Pesanan</span></div>
-          <div class="stat-item"><strong>4.8</strong><span>Rating</span></div>
-          <div class="stat-item"><strong>6</strong><span>Kategori</span></div>
-          <div class="stat-item"><strong>24/7</strong><span>Checkout</span></div>
+          <div class="stat-item"><strong class="stat-number" data-target="500">0</strong><span>Pesanan</span></div>
+          <div class="stat-item"><strong class="stat-number" data-target="48" data-decimal="1" data-suffix="">4.8</strong><span>Rating</span></div>
+          <div class="stat-item"><strong class="stat-number" data-target="6">0</strong><span>Kategori</span></div>
+          <div class="stat-item"><strong class="stat-number" data-target="247">24/7</strong><span>Checkout</span></div>
         </div>
       </div>
     </section>
@@ -169,9 +174,44 @@
           <h2>Pelanggan suka prosesnya yang cepat</h2>
         </div>
         <div class="testimonial-grid reveal">
-          <article class="testimonial-card"><p>"Keranjangnya simpel, tinggal checkout ke WhatsApp. Cocok untuk belanja dadakan."</p><strong>Rani Putri</strong><span>Pelanggan</span></article>
+          <article class="testimonial-card"><p>"Keranjangnya simpel, tinggal checkout langsung. Cocok untuk belanja dadakan."</p><strong>Rani Putri</strong><span>Pelanggan</span></article>
           <article class="testimonial-card"><p>"Tampilannya bersih dan produk gampang dicari. Dark mode-nya juga enak dilihat."</p><strong>Andi Pratama</strong><span>Pelanggan</span></article>
           <article class="testimonial-card"><p>"Saya bisa simpan keranjang dulu lalu lanjut pesan tanpa mulai dari awal."</p><strong>Maya Lestari</strong><span>Pelanggan</span></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & Hours -->
+    <section class="section location-section" id="lokasi">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Lokasi & Jam Operasional</span>
+          <h2>Kami siap melayani kamu 24 jam</h2>
+          <p>TokoKu beroperasi penuh tanpa henti — 24 jam sehari, 7 hari seminggu.</p>
+        </div>
+        <div class="location-grid reveal">
+          <div class="location-info">
+            <div class="location-card">
+              <div class="loc-icon">📍</div>
+              <h3>Alamat</h3>
+              <p>Jl. Raya Pangkalpinang No. 123<br>Kel. Taman Bunga, Kec. Rangkui<br>Pangkalpinang, Bangka Belitung 33123</p>
+            </div>
+            <div class="location-card hours-card">
+              <div class="loc-icon">🕒</div>
+              <h3>Jam Operasional</h3>
+              <div class="hours-badge">24 JAM</div>
+              <p>Setiap hari — <strong>24 jam nonstop</strong><br>Termasuk hari libur nasional</p>
+            </div>
+            <div class="location-card">
+              <div class="loc-icon">📞</div>
+              <h3>Kontak</h3>
+              <p>Telp: +62 831 2572 6235<br>Email: halo@tokoku.com</p>
+            </div>
+          </div>
+          <div class="location-map-wrapper">
+            <div id="locationMap" class="location-map"></div>
+            <p class="map-caption">📍 Jl. Raya Pangkalpinang No. 123, Pangkalpinang</p>
+          </div>
         </div>
       </div>
     </section>
@@ -185,17 +225,46 @@
         </div>
         <div class="faq-list reveal">
           <details open>
-            <summary>Apakah checkout langsung masuk ke WhatsApp?</summary>
-            <p>Ya, tombol checkout akan membuka WhatsApp dengan daftar pesanan dan total harga otomatis.</p>
+            <summary>Bagaimana cara berbelanja di TokoKu?</summary>
+            <div class="faq-answer"><p>Tambah produk ke keranjang, lalu klik "Pesan Sekarang". Isi data diri dan pesanan akan dikirim ke kami untuk diproses.</p></div>
           </details>
           <details>
-            <summary>Apakah keranjang hilang setelah refresh?</summary>
-            <p>Tidak. Keranjang tersimpan di Local Storage browser sampai kamu menghapus itemnya.</p>
+            <summary>Berapa lama pesanan diproses?</summary>
+            <div class="faq-answer"><p>Pesanan diproses dalam 1×24 jam setelah konfirmasi. Kamu akan mendapat notifikasi jika pesanan sudah siap.</p></div>
           </details>
           <details>
-            <summary>Bisakah nomor WhatsApp diganti?</summary>
-            <p>Bisa. Nomor disiapkan di file JavaScript agar mudah disesuaikan untuk toko.</p>
+            <summary>Apa saja metode pembayaran yang tersedia?</summary>
+            <div class="faq-answer"><p>Kami menerima Transfer Bank, COD (Bayar di Tempat), GoPay, OVO, DANA, ShopeePay, dan QRIS.</p></div>
           </details>
+          <details>
+            <summary>Apakah ada minimal pembelian?</summary>
+            <div class="faq-answer"><p>Tidak ada minimal pembelian. Kamu bebas memesan produk berapa pun.</p></div>
+          </details>
+          <details>
+            <summary>Bagaimana cara melacak pesanan?</summary>
+            <div class="faq-answer"><p>Setelah pesanan dikonfirmasi, kamu bisa cek status di halaman Riwayat Pesanan atau hubungi kami langsung.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order History -->
+    <section class="section order-history-section" id="riwayat">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Pesanan Saya</span>
+          <h2>Riwayat pesananmu</h2>
+          <p>Semua pesanan yang sudah dibuat tersimpan di sini.</p>
+        </div>
+        <div class="order-tabs reveal">
+          <button class="order-tab active" data-status="Semua">Semua</button>
+          <button class="order-tab" data-status="Dibuat">🆕 Baru</button>
+          <button class="order-tab" data-status="Diproses">📦 Diproses</button>
+          <button class="order-tab" data-status="Dikirim">🚚 Dikirim</button>
+          <button class="order-tab" data-status="Selesai">✅ Selesai</button>
+        </div>
+        <div class="order-list" id="orderList">
+          <div class="empty-state"><p>Belum ada pesanan. Yuk, belanja dulu!</p></div>
         </div>
       </div>
     </section>
@@ -215,10 +284,10 @@
         <strong id="cartTotal">Rp0</strong>
       </div>
       <button class="btn btn-primary checkout-btn" id="checkoutButton" type="button">
-        <span aria-hidden="true">☎</span>
-        Pesan via WhatsApp
+        <span aria-hidden="true">💬</span>
+        Pesan Sekarang
       </button>
-      <p>Pesan akan dikirim ke WhatsApp kami</p>
+      <p>Pesan akan dikirim ke kami</p>
     </div>
   </aside>
 
@@ -239,6 +308,154 @@
     </span>
   </div>
 
+  <!-- Receipt / Struk Modal -->
+  <div class="receipt-backdrop" id="receiptModal" aria-hidden="true">
+    <div class="receipt-container" role="dialog" aria-modal="true" aria-labelledby="receiptTitle">
+      <button class="receipt-close-btn" id="closeReceipt" type="button" aria-label="Tutup struk">✕</button>
+      <div id="receiptContent"></div>
+      <div class="receipt-actions">
+        <button class="btn btn-outline" id="closeReceiptBtn" type="button">Kembali ke Keranjang</button>
+        <button class="btn btn-primary" id="sendWhatsAppBtn" type="button">
+          <span aria-hidden="true">💬</span> Kirim Pesanan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Form Modal -->
+  <div class="orderform-backdrop" id="orderFormModal" aria-hidden="true">
+    <div class="orderform-container" role="dialog" aria-modal="true" aria-labelledby="orderFormTitle">
+      <button class="orderform-close-btn" id="closeOrderForm" type="button" aria-label="Tutup form">✕</button>
+      <div class="orderform-header">
+        <h2 id="orderFormTitle">📋 Detail Pesanan</h2>
+        <p>Lengkapi data diri untuk melanjutkan pemesanan</p>
+      </div>
+      <form id="orderForm" class="orderform-body" autocomplete="off" novalidate>
+        <div class="orderform-summary" id="orderFormSummary"></div>
+
+        <div class="form-group">
+          <label for="orderName">Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="orderName" name="name" required placeholder="Masukkan nama lengkap">
+          <small class="form-error" id="nameError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="orderPhone">No. Telepon <span class="required">*</span></label>
+          <input type="tel" id="orderPhone" name="phone" required placeholder="08xxxxxxxxxx">
+          <small class="form-error" id="phoneError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="orderAddress">Alamat Lengkap <span class="required">*</span></label>
+          <textarea id="orderAddress" name="address" required rows="3" placeholder="Jalan, nomor rumah, kelurahan, kecamatan, kota"></textarea>
+          <small class="form-error" id="addressError"></small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="orderPayment">Metode Pembayaran <span class="required">*</span></label>
+            <select id="orderPayment" name="payment" required>
+              <option value="">Pilih metode</option>
+              <option value="Transfer BCA">🏦 Transfer BCA</option>
+              <option value="Transfer Mandiri">🏦 Transfer Mandiri</option>
+              <option value="Transfer BNI">🏦 Transfer BNI</option>
+              <option value="GoPay">📱 GoPay</option>
+              <option value="OVO">📱 OVO</option>
+              <option value="DANA">📱 DANA</option>
+              <option value="ShopeePay">📱 ShopeePay</option>
+              <option value="QRIS">📱 QRIS</option>
+              <option value="COD">💵 COD (Bayar di Tempat)</option>
+            </select>
+            <small class="form-error" id="paymentError"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="orderKecamatan">Kecamatan</label>
+            <select id="orderKecamatan" name="kecamatan">
+              <option value="">Pilih kecamatan</option>
+              <option value="Gerunggang">Gerunggang</option>
+              <option value="Bukit Intan">Bukit Intan</option>
+              <option value="Rangkui">Rangkui</option>
+              <option value="Taman Sari">Taman Sari</option>
+              <option value="Girimaya">Girimaya</option>
+              <option value="Gabek">Gabek</option>
+              <option value="Pangkal Balam">Pangkal Balam</option>
+              <option value="Pangkal Pinang Timur">Pangkal Pinang Timur</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="orderNotes">Catatan (opsional)</label>
+          <textarea id="orderNotes" name="notes" rows="2" placeholder="Catatan tambahan untuk pesanan..."></textarea>
+        </div>
+
+        <div class="orderform-actions">
+          <button type="button" class="btn btn-outline" id="cancelOrderForm">Batal</button>
+          <button type="submit" class="btn btn-primary" id="submitOrderBtn">
+            <span aria-hidden="true">✅</span> Buat Pesanan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Tracking Modal -->
+  <div class="tracking-backdrop" id="trackingModal" aria-hidden="true">
+    <div class="tracking-container" role="dialog" aria-modal="true" aria-labelledby="trackingTitle">
+      <button class="tracking-close-btn" id="closeTracking" type="button" aria-label="Tutup tracking">✕</button>
+      <div id="trackingContent"></div>
+    </div>
+  </div>
+
+  <!-- QRIS Payment Modal -->
+  <div class="qris-backdrop" id="qrisModal" aria-hidden="true">
+    <div class="qris-container" role="dialog" aria-modal="true" aria-labelledby="qrisTitle">
+      <button class="qris-close-btn" id="closeQris" type="button" aria-label="Tutup QRIS">✕</button>
+      <div class="qris-body">
+        <div class="qris-header">
+          <h2 id="qrisTitle">💳 Pembayaran QRIS</h2>
+          <p>Scan QR Code di bawah untuk melakukan pembayaran</p>
+        </div>
+        <div class="qris-info-box" id="qrisOrderInfo"></div>
+        <div class="qris-qr-wrapper">
+          <img src="qris-payment.png" alt="QRIS Payment QR Code" class="qris-qr-image" id="qrisQrImage">
+          <div class="qris-qr-label">Scan dengan <strong>GoPay, OVO, DANA, ShopeePay,</strong> atau <strong>Mobile Banking</strong></div>
+        </div>
+        <div class="qris-steps">
+          <div class="qris-step">
+            <span class="qris-step-num">1</span>
+            <span>Buka aplikasi pembayaran (GoPay/OVO/DANA/M-Banking)</span>
+          </div>
+          <div class="qris-step">
+            <span class="qris-step-num">2</span>
+            <span>Pilih menu <strong>Bayar QR</strong> / <strong>Scan QRIS</strong></span>
+          </div>
+          <div class="qris-step">
+            <span class="qris-step-num">3</span>
+            <span>Scan QR code di atas</span>
+          </div>
+          <div class="qris-step">
+            <span class="qris-step-num">4</span>
+            <span>Konfirmasi pembayaran, lalu klik <strong>"Sudah Bayar"</strong></span>
+          </div>
+        </div>
+        <div class="qris-actions">
+          <button class="btn btn-outline" id="closeQrisBtn" type="button">Tutup</button>
+          <button class="btn btn-success" id="qrisPaidBtn" type="button">
+            ✅ Sudah Bayar
+          </button>
+        </div>
+        <p class="qris-note">*Jika sudah membayar, pesanan otomatis terkonfirmasi dan akan segera diproses.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas">
+    <span aria-hidden="true">↑</span>
+  </button>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -247,7 +464,7 @@
           <span class="brand-icon" aria-hidden="true">🛍️</span>
           <span class="brand-name">Toko<span>Ku</span></span>
         </a>
-        <p>Toko online modern untuk belanja ringan, cepat, dan langsung via WhatsApp.</p>
+        <p>Toko online modern untuk belanja ringan, cepat, dan langsung pesan.</p>
       </div>
       <div>
         <h3>Menu</h3>
@@ -257,19 +474,21 @@
       </div>
       <div>
         <h3>Kontak</h3>
-        <a href="mailto:halo@tokoku.test">halo@tokoku.test</a>
-        <a href="tel:+6283125726235">+62 831 2572 6235</a>
+        <a href="mailto:halo@tokoku.com">halo@tokoku.com</a>
+        <a href="tel:+628****6235">+62 831 2572 6235</a>
+        <div class="footer-hours">🕒 Buka 24 Jam — Setiap Hari</div>
+        <a href="#lokasi">📍 Lihat Lokasi</a>
       </div>
       <div>
         <h3>Media Sosial</h3>
         <a href="#" aria-label="Instagram TokoKu">Instagram</a>
         <a href="#" aria-label="TikTok TokoKu">TikTok</a>
-        <a href="#" aria-label="WhatsApp TokoKu">WhatsApp</a>
       </div>
     </div>
     <div class="footer-bottom">© 2026 TokoKu. All Rights Reserved.</div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="script.js" defer></script>
 </body>
 </html>
