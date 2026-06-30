@@ -204,6 +204,16 @@ a:focus-visible {
   transform: translateY(-2px);
 }
 
+.btn-print {
+  background: #1E293B;
+  color: #fff;
+  border: none;
+}
+.btn-print:hover {
+  background: #334155;
+  transform: translateY(-2px);
+}
+
 .icon-button {
   display: grid;
   width: 42px;
@@ -1794,7 +1804,7 @@ body.dark-mode .toggle-thumb {
 /* Receipt Actions */
 .receipt-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
   margin-top: 16px;
   padding: 0 4px;

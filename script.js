@@ -804,6 +804,61 @@ function closeReceiptModal() {
   syncScrollLock();
 }
 
+/* ========== PRINT RECEIPT ========== */
+function printReceipt() {
+  const receiptHTML = document.getElementById("receiptContent").innerHTML;
+  const printWin = window.open("", "_blank", "width=400,height=600");
+  printWin.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Print Struk - ${STORE_NAME}</title>
+      <style>
+        @page { margin: 0; size: 80mm auto; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+          font-family: 'Courier New', monospace;
+          font-size: 12px;
+          color: #000;
+          width: 80mm;
+          padding: 10px 8px;
+          background: #fff;
+        }
+        .receipt-paper { width: 100%; }
+        .receipt-header { text-align: center; margin-bottom: 8px; }
+        .receipt-store-icon { font-size: 28px; margin-bottom: 4px; }
+        .receipt-store-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+        .receipt-store-addr, .receipt-store-tel { font-size: 10px; color: #333; }
+        .receipt-divider { border-top: 1px dashed #000; margin: 8px 0; }
+        .receipt-divider-thin { border-top: 1px dotted #000; margin: 6px 0; }
+        .receipt-meta { font-size: 11px; }
+        .receipt-meta div { display: flex; justify-content: space-between; margin: 2px 0; }
+        .receipt-items-label { font-weight: 700; font-size: 11px; margin-bottom: 4px; }
+        .receipt-item { display: flex; justify-content: space-between; margin: 2px 0; font-size: 11px; }
+        .receipt-item-name { flex: 1; }
+        .receipt-item-detail { color: #555; margin: 0 4px; }
+        .receipt-item-total { font-weight: 700; min-width: 70px; text-align: right; }
+        .receipt-totals { }
+        .receipt-total-row { display: flex; justify-content: space-between; margin: 3px 0; font-size: 11px; }
+        .receipt-total-row.grand { font-size: 14px; font-weight: 700; }
+        .receipt-footer { text-align: center; margin-top: 8px; }
+        .receipt-thanks { font-size: 12px; margin-bottom: 4px; }
+        .receipt-note { font-size: 9px; color: #555; }
+        .receipt-barcode { font-size: 16px; letter-spacing: 4px; margin-top: 6px; color: #000; }
+        @media print {
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+      </style>
+    </head>
+    <body>\n      ${receiptHTML}
+      <script>window.onload=function(){window.print();window.close()};<\/script>
+    </body>
+    </html>
+  `);
+  printWin.document.close();
+}
+
+/* ========== WHATSAPP MESSAGE ========== */
 function buildWhatsAppMessage() {
   const now = new Date();
   const dateStr = now.toLocaleDateString("id-ID", { day: "2-digit", month: "2-digit", year: "numeric" });
@@ -1624,6 +1679,7 @@ function bindEvents() {
   // Receipt modal
   closeReceipt.addEventListener("click", closeReceiptModal);
   document.getElementById("closeReceiptBtn").addEventListener("click", closeReceiptModal);
+  document.getElementById("printReceiptBtn").addEventListener("click", printReceipt);
   sendWhatsAppBtn.addEventListener("click", sendToWhatsApp);
   receiptModal.addEventListener("click", (event) => { if (event.target === receiptModal) closeReceiptModal(); });
 
